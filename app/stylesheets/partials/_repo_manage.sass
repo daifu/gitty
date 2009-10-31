@@ -1,0 +1,71 @@
+=editbox
+	.editbox
+		:background #f8f8ff
+		:border-left 1px solid #cccccc
+		:border-right 1px solid #cccccc
+		:border-top 1px solid #cccccc
+		:margin-top 1.5em
+=comment_label
+	label
+		:color #888888
+		:display block
+		:font-size 90%
+		:margin-bottom 0.25em
+=edit_body
+	.body
+		:padding 0.5em
+		+comment_label
+		:border-bottom 1px solid #cccccc
+#repos
+	:margin-bottom 1em
+	.repo
+		:margin 1em 0
+		:background #fffeeb
+		:border 1px solid #F7CA75
+		:margin 1em 0
+		:padding 0.1em 0.5em
+#edit_repo
+	+editbox
+	h1
+		:background #eeeeee
+		:border-bottom 1px solid #cccccc
+		:font-size 100%
+		:overflow hidden
+		:padding 0.5em
+	.properties
+		:float left
+		:width 30em
+	.collabs
+		:background #f0f0f0
+		:border 1px solid #dddddd
+		:float right
+		:margin-top 1.5em
+		:padding 0.5em 1em 1em
+		:width 26em
++edit_body
+#members
+	ul
+		:list-style-position outside
+		:list-style-type none
+		li
+			:font-size 110%
+			:font-weight bold
+			:margin 0.4em 0
+#member_list
+	:margin-top 10px
+	.notice
+		:width = 100%
+		:color red
+		:background black
+		:padding 5px
+		:text-align center
+	.members
+		:width 25em
+		:float left
+		:margin-bottom 5px
+		.member
+			:font-weight bold
+			:float left
+			:margin-right 10px
+		.controll
+			:color #FF2E00 !important
