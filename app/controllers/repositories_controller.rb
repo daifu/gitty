@@ -58,7 +58,7 @@ class RepositoriesController < ApplicationController
     @repository.name.gsub!(/ /, "-")
     
     respond_to do |format|
-      if @repository.save && create_repository
+      if @repository.save && create_repository && create_repositories_users(@repository)
         flash[:notice] = 'Repository was successfully created.'
         format.html { redirect_to(repositories_url) }
       else
@@ -135,21 +135,64 @@ class RepositoriesController < ApplicationController
   
   def manage
     @repository = @current_user.repositories.find_by_name(params[:repo])
-    @users = User.all
+    show_collaborators(@repository)
   end
   
-  def create_member
-    @member = Member.new(params[:member])
-    
-    respond_to do |format|
-      if @member.save
-        flash[:notice] = "Member has been added"
-        format.html { redirect_to(manage_url(@current_user.login, params[:repo])) }
-      else
-        flash[:notice] = "Cannot Add Member"
-        format.html { redirect_to account_url }
+  def add_members
+    users = params[:user][:login]
+    users = users.split(" ")
+    @repository = params[:user][:repo]
+    @repository = Repository.find_by_name(@repository)
+    users.each do |u|
+      user = User.find_by_login(u)
+      RepositoriesUsers.new({:repository_id => @repository.id, :user_id => user.id, :is_owner => @repository.owner.id}).save
+      append_member_to_group(user, @repository)
+    end
+    show_collaborators(@repository)
+    render :update do |page|
+      page['member_list'].reload
+    end
+  end
+
+  def revoke_member
+    @repository = Repository.find_by_id(params[:repo_id])
+    revoke_member = RepositoriesUsers.find_by_id(params[:id])
+    if revoke_member.is_owner != revoke_member.user_id
+      remove_member_from_group(revoke_member.user.login, @repository)
+      revoke_member.destroy
+      show_collaborators(@repository)
+      render :update do |page|
+        page['member_list'].reload
+      end
+    else
+      show_collaborators(@repository)
+      render :update do |page|
+        page['member_list'].reload
+        page.insert_html(:top, "list_members", "<div class='notice'>Your Are Not Allowed to Delete The Owner</div>")
       end
     end
+  end
+
+  def show_collaborators(repository)
+    @members = repository.users
+    members_ids = []
+    @members.each do |m|
+      members_ids << m.user_id
+    end
+    @users = User.find(:all, :conditions => ["id NOT IN (?)", members_ids])
+    @auto_complete = [];
+    @users.each do |m|
+      @auto_complete << { :text => m.login, :value => m.id }
+    end
+    @auto_complete = ActiveSupport::JSON.encode(@auto_complete)
+  end
+
+  def append_member_to_group(member, repository)
+    flash[:notice] = "Error in ssh key name!" unless add_ssh_key_name_to_group(member, repository)
+  end
+
+  def remove_member_from_group(member, repository)
+    flash[:notice] = "Error in ssh key name!" unless revoke_member_in_gitosis(member, repository)
   end
   
   private
@@ -169,11 +212,45 @@ class RepositoriesController < ApplicationController
       end
     end
     
+    def create_repositories_users(repository)
+      RepositoriesUsers.new({:repository_id => repository.id, :user_id => @current_user.id, :is_owner => @current_user.id}).save
+    end
+    
     def get_repo
       begin
         @repo = Repo.new("#{RAILS_ROOT}/home/git/repositories/#{params[:login]}/#{params[:repo]}.git")
       rescue
         return false
       end
+    end
+    
+    def revoke_member_in_gitosis(revoke_member, repository)
+      begin
+        line = "[group #{repository.name}]"
+        name = " #{revoke_member} "
+        gsub_file "#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/gitosis.conf", /(#{Regexp.union(line, name)})/mi do |match|
+          "#{match.gsub(/#{Regexp.escape(name)}/, "")}"
+        end
+        return true
+      rescue
+        return false
+      end
+    end
+
+    def add_ssh_key_name_to_group(member, repository)
+      begin
+        line = "[group #{repository.name}]\nwritable = #{repository.owner.login}/#{repository.name}\nmembers = "
+        gsub_file "#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/gitosis.conf", /(#{Regexp.escape(line)})/mi do |match|
+          "#{match} #{member.login} "
+        end
+        return true
+      rescue
+        return false
+      end
+    end
+
+    def gsub_file(path, regexp, *args, &block)
+      content = File.read(path).gsub(regexp, *args, &block)
+      File.open(path, 'wb') { |file| file.write(content) }
     end
 end
