@@ -58,7 +58,7 @@ class RepositoriesController < ApplicationController
     @repository.name.gsub!(/ /, "-")
     
     respond_to do |format|
-      if @repository.save && create_repository && create_repositories_users(@repository)
+      if @repository.save && create_repository && create_repositories_users(@repository, @current_user, @current_user)
         flash[:notice] = 'Repository was successfully created.'
         format.html { redirect_to(repositories_url) }
       else
@@ -139,13 +139,10 @@ class RepositoriesController < ApplicationController
   end
   
   def add_members
-    users = params[:user][:login].split(" ")
     @repository = Repository.find_by_name(params[:user][:repo])
-    users.each do |u|
-      user = User.find_by_login(u)
-      RepositoriesUsers.new({:repository_id => @repository.id, :user_id => user.id, :is_owner => @repository.owner.id}).save
-      append_member_to_group(user, @repository)
-    end
+    user = User.find_by_login(params[:user][:login])
+    create_repositories_users(@repository, user, @repository.owner)
+    append_member_to_group(user, @repository)
     show_collaborators(@repository)
     render :update do |page|
       page.replace_html "member_list", :partial => 'member_list'
@@ -209,8 +206,8 @@ class RepositoriesController < ApplicationController
       end
     end
     
-    def create_repositories_users(repository)
-      RepositoriesUsers.new({:repository_id => repository.id, :user_id => @current_user.id, :is_owner => @current_user.id}).save
+    def create_repositories_users(repository, member ,user)
+      RepositoriesUsers.new({:repository_id => repository.id, :user_id => member.id, :is_owner => user.id}).save
     end
     
     def get_repo
@@ -224,7 +221,7 @@ class RepositoriesController < ApplicationController
     def revoke_member_in_gitosis(revoke_member, repository)
       begin
         line = "[group #{repository.name}]"
-        name = " #{revoke_member} "
+        name = " #{revoke_member}"
         gsub_file "#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/gitosis.conf", /(#{Regexp.union(line, name)})/mi do |match|
           "#{match.gsub(/#{Regexp.escape(name)}/, "")}"
         end
