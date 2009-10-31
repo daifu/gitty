@@ -141,11 +141,17 @@ class RepositoriesController < ApplicationController
   def add_members
     @repository = Repository.find_by_name(params[:user][:repo])
     user = User.find_by_login(params[:user][:login])
-    create_repositories_users(@repository, user, @repository.owner)
-    append_member_to_group(user, @repository)
-    show_collaborators(@repository)
-    render :update do |page|
-      page.replace_html "member_list", :partial => 'member_list'
+    if !user.blank?
+      create_repositories_users(@repository, user, @repository.owner)
+      append_member_to_group(user, @repository)
+      show_collaborators(@repository)
+      render :update do |page|
+        page.replace_html "member_list", :partial => 'member_list'
+      end
+    else
+      render :update do |page|
+        page.insert_html(:top, "list_members", "<div class='notice'>No User Name Found In The Database.</div>")
+      end
     end
   end
 
