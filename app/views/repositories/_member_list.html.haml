@@ -11,14 +11,7 @@
 			= f.submit "Add", :disable_with => "Submiting"
 			= f.hidden_field :repo, {:value => @repository.name}
 
+%script{:type => "text/javascript",
+        :src  => "/javascripts/member_list.js"}
 :javascript
-	$("#toggle2").hide();
-	$("#toggle1").toggle(function(){
-		$(this).html("Cancel adding");
-	}, function() {
-		$(this).html("Add another collaborator");
-	});
-	$("#toggle1").click(function(){
-		$(this).next("#toggle2").slideToggle("fast");
-	});
 	$("#users").autocompleteArray(#{@auto_complete});

@@ -99,7 +99,7 @@ class RepositoriesController < ApplicationController
   def blob(repo)
     @blob = repo.blob(params[:path].last)
     @data = @blob.data
-    @code = CodeRay.scan(@data, :ruby).html(:line_numbers => :table).div
+    @code = CodeRay.scan("\n" + @data, :ruby).html(:line_numbers => :inline).div
   end
   
   def tree(repo)

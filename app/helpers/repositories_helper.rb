@@ -23,4 +23,7 @@ module RepositoriesHelper
     new_path_array.push(filename)
   end
   
+  def is_repo_owner?(repo)
+    return true if @current_user == Repository.find_by_name(repo).owner
+  end
 end

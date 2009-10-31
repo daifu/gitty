@@ -3,4 +3,4 @@
     %li= link_to 'browse', repo_path(@current_user.login, params[:repo], 'master')
     %li= link_to 'commits', commits_path(@current_user.login, params[:repo], 'master')
     %li= link_to 'forks'
-    %li= link_to 'manage', manage_path(@current_user.login, params[:repo])
+    %li= link_to 'manage', manage_path(@current_user.login, params[:repo]) if is_repo_owner?(params[:repo])
