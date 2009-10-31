@@ -3,23 +3,22 @@
 		- @members.each do |m|
 			.members
 				.member=link_to m.login
-				.controll=link_to_remote "revoke", :url => {:action => "revoke_member", :id => m.id, :repo_id => @repository.id }
-	%p#toggle1=link_to_function "Add another collaborator", "fn_toggle();"
-	#toggle2{:style => {:display => ": none"}}
+				.control=link_to_remote "revoke", :url => {:action => "revoke_member", :id => m.id, :repo_id => @repository.id }
+	%a#toggle1{:href => "#"} Add another collaborator
+	#toggle2
 		- remote_form_for :user, :url => {:controller => "repositories", :action => "add_members"}, :html => {:method => :post} do |f|
 			= f.text_field :login, {:id => "users"}
+			= f.submit "Add", :disable_with => "Submiting"
 			= f.hidden_field :repo, {:value => @repository.name}
-			= f.submit "Add", :disable_with => 'Submiting...', :class => "button"
-		or
-		#toggle3=link_to_function "Done", "fn_toggle();"
 
 :javascript
-	function fn_toggle(){
-		$("toggle2").toggle();
-		$("toggle1").toggle();
-	}
-	document.whenReady(function() {
-		ac = new UI.AutoComplete( 'users', { shadow: "auto_complete"});
-		ac.observe('input:empty', function(event) {event.memo.autocomplete.showMessage("Type a user name")}).observe('selection:empty', function(event) {event.memo.autocomplete.showMessage("No Suggestions")});
-		ac.setAutocompleteList(#{@auto_complete});
+	$("#toggle2").hide();
+	$("#toggle1").toggle(function(){
+		$(this).html("Cancel adding");
+	}, function() {
+		$(this).html("Add another collaborator");
 	});
+	$("#toggle1").click(function(){
+		$(this).next("#toggle2").slideToggle("fast");
+	});
+	$("#users").autocompleteArray(#{@auto_complete});

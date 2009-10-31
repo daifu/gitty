@@ -9,7 +9,7 @@ class CreateRepositoriesUsers < ActiveRecord::Migration
     
     RepositoriesUsers.create(:repository_id => 1,
                               :user_id => 2,
-                              :is_owner => 1,
+                              :is_owner => 2,
                               :created_at => "2009-10-30 23:21:24",
                               :updated_at => "2009-10-30 23:21:24"
                               )

@@ -139,10 +139,8 @@ class RepositoriesController < ApplicationController
   end
   
   def add_members
-    users = params[:user][:login]
-    users = users.split(" ")
-    @repository = params[:user][:repo]
-    @repository = Repository.find_by_name(@repository)
+    users = params[:user][:login].split(" ")
+    @repository = Repository.find_by_name(params[:user][:repo])
     users.each do |u|
       user = User.find_by_login(u)
       RepositoriesUsers.new({:repository_id => @repository.id, :user_id => user.id, :is_owner => @repository.owner.id}).save
@@ -150,7 +148,7 @@ class RepositoriesController < ApplicationController
     end
     show_collaborators(@repository)
     render :update do |page|
-      page['member_list'].reload
+      page.replace_html "member_list", :partial => 'member_list'
     end
   end
 
@@ -162,12 +160,11 @@ class RepositoriesController < ApplicationController
       revoke_member.destroy
       show_collaborators(@repository)
       render :update do |page|
-        page['member_list'].reload
+        page.replace_html "member_list", :partial => 'member_list'
       end
     else
       show_collaborators(@repository)
       render :update do |page|
-        page['member_list'].reload
         page.insert_html(:top, "list_members", "<div class='notice'>Your Are Not Allowed to Delete The Owner</div>")
       end
     end
@@ -182,7 +179,7 @@ class RepositoriesController < ApplicationController
     @users = User.find(:all, :conditions => ["id NOT IN (?)", members_ids])
     @auto_complete = [];
     @users.each do |m|
-      @auto_complete << { :text => m.login, :value => m.id }
+      @auto_complete << m.login
     end
     @auto_complete = ActiveSupport::JSON.encode(@auto_complete)
   end
