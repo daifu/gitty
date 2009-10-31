@@ -1,1 +1,18 @@
-%h1 Manage
+=render :partial => "repo_nav"
+#repos
+	#repo_details.repo
+		%h1 Manage
+		%h1= "#{params[:repo]} Team"
+		%h2= "Owner: #{@repository.owner.login}"
+#edit_repo
+	.properties
+		.admin.editbox
+			%h1 Administration
+			.body
+				%label Rename Repository
+			.body
+				=link_to "Delete This Repository.."
+	.collabs
+		#members
+			%h2 Repository Collaborators
+			=render :partial => "member_list"

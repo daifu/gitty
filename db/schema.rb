@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091031012107) do
+ActiveRecord::Schema.define(:version => 20091031041520) do
 
   create_table "preferences", :force => true do |t|
     t.string   "repositories_directory", :default => "/home/git/repositories",                                         :null => false
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(:version => 20091031012107) do
     t.text     "description"
     t.string   "homepage"
     t.boolean  "is_public",   :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "repositories_users", :force => true do |t|
+    t.integer  "repository_id"
+    t.integer  "user_id"
+    t.integer  "is_owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
