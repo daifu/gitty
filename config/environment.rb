@@ -38,8 +38,11 @@ Rails::Initializer.run do |config|
   config.gem "thoughtbot-factory_girl",
                :lib    => "factory_girl",
                :source => "http://gems.github.com"
-  config.gem 'rspec', :lib => false
-  config.gem 'rspec-rails', :lib => false
+  config.gem 'rspec',       :lib => false,  :version => "1.2.9"
+  config.gem 'rspec-rails', :lib => false,  :version => "1.2.9"
+  config.gem 'cucumber',    :lib => false,  :version => "0.4.3"
+  config.gem 'webrat',      :lib => false,  :version => "0.5.3"
+  config.gem 'nokogiri',    :lib => false,  :version => "1.4.0"
   config.gem 'haml'
   config.gem 'grit'
   config.gem 'coderay'
