@@ -1,0 +1,12 @@
+%tr
+  %td.title= form.label :login, "login"
+  %td.desc= form.text_field :login
+%tr
+  %td.title= form.label :email, "email"
+  %td.desc= form.text_field :email
+%tr
+  %td.title= form.label :password, form.object.new_record? ? "password" : "change password"
+  %td.desc= form.password_field :password
+%tr
+  %td.title= form.label :password_confirmation, "confirm"
+  %td.desc= form.password_field :password_confirmation

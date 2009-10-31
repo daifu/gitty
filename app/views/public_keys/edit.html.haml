@@ -1,0 +1,11 @@
+#add_key
+  %strong SSH Key
+  - form_for @public_key do |f|
+    = f.hidden_field :user_id, :value => @current_user.id
+    %p
+      = f.label :title
+      = f.text_field :title
+    %p
+      = f.label :key
+      = f.text_area :key
+    = f.submit "Update", :disable_with => 'Updating...', :class => "button"

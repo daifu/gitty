@@ -1,0 +1,11 @@
+#container
+  = render :partial => "repo_nav"
+  #content
+    .head
+      %h1 Commits
+    - @commits.each do |c|
+      .commit
+        %ul
+          %li= c.message
+          %li= "Commit #{link_to c.id}"
+          %li= "Tree #{link_to c.tree.id, repo_path(@current_user.login, params[:repo], c.id)}"

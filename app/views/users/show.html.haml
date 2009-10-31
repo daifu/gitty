@@ -1,0 +1,60 @@
+#profile
+  .head
+    %h1 
+      account
+      = link_to "edit", edit_account_path
+  .tlayout
+    %table
+      %tr 
+        %td.title login
+        %td.desc=h @user.login
+      %tr
+        %td.title email
+        %td.desc=h @user.email
+  #keys
+    .head
+      %h1 
+        ssh keys
+        = link_to_function "add key", "addKey()"
+    #key_list
+      .tlayout
+        %table
+          %tbody
+            - @keys.each do |k|
+              %tr
+                %td.title
+                  =h k.title
+                  = "#{link_to 'Edit', edit_public_key_path(k)} | "
+                  = link_to "Delete", public_key_path(k), :method => :delete
+  #add_key
+    #new_key
+      .tlayout
+        %table
+          %tbody
+            - form_for @public_key do |f|
+              = f.error_messages
+              = f.hidden_field :user_id, :value => @user.id
+              %tr
+                %td.title= f.label :title, "title"
+              %tr
+                %td.desc= f.text_field :title
+              %tr
+                %td.title= f.label :key, "key"
+              %tr
+                %td.desc= f.text_area :key
+              %tr
+                %td.desc
+                  = f.submit "Submit", :disable_with => 'Submiting...', :class => "button2"
+                  or
+                  = link_to_function "Cancel", "cancelAdd()"
+:javascript
+  $('new_key').hide();
+  
+  function addKey() {
+    $('new_key').show();
+  }
+  
+  function cancelAdd() {
+    $('new_key').hide();
+  }
+  

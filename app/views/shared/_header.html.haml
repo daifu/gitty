@@ -1,0 +1,10 @@
+#header
+  #logo
+    = image_tag "/images/gitty.png"
+  #nav
+    .welcome= "welcome, #{@current_user.login}"
+    %ul
+      %li= link_to 'dashboard', repositories_path
+      %li= link_to 'account', account_path
+      %li= link_to "logout", user_session_path, :method => :delete
+

@@ -1,0 +1,34 @@
+#login
+  #logo= image_tag "/images/logo.png"
+  %h2 simple git management.
+  #login_form
+    #lform
+      - form_for @user_session, :url => user_session_path do |f|
+        = f.error_messages
+        %table
+          %tbody
+            %tr
+              %td.flabel= f.label :login, "login"
+              %td.ffield= f.text_field :login
+            %tr
+              %td.flabel= f.label :password, "password"
+              %td.ffield= f.password_field :password
+            %tr
+              %td
+              %td.ffield{:style => "text-align: right"}= f.submit "Login", :class => "button2"
+    #ldetail
+      #llist
+        %ul
+          %li
+            .limage= image_tag "/images/terminal.png"
+            .ltext Manage your own projects using your own servers.
+          .clearfix
+          %li
+            .limage= image_tag "/images/ical.png"
+            .ltext Get the latest news and commits in your team.
+          .clearfix
+          %li
+            .limage= image_tag "/images/security.png"
+            .ltext Security is top notch using ssh and ssl for better protection.
+  .clearfix
+  #lfoot

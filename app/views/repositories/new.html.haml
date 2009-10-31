@@ -1,0 +1,25 @@
+.head
+  %h1 New Repository
+- form_for(@repository) do |f|
+  = f.error_messages
+  = f.hidden_field :user_id, :value => @current_user.id
+  .tlayout
+    %table
+      %tbody
+        %tr
+          %td.title= f.label :name, "name"
+        %tr
+          %td.desc= f.text_field :name
+        %tr
+          %td.title= f.label :description, "description"
+        %tr
+          %td.desc= f.text_area :description
+        %tr
+          %td.title= f.label :homepage, "homepage"
+        %tr  
+          %td.desc= f.text_field :homepage
+        %tr
+          %td.desc
+            = f.submit 'Create', :class => "button2"
+            or
+            = link_to 'Back', repositories_path

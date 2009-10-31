@@ -1,0 +1,7 @@
+- if @user
+  = @result
+  - form_for @member, :controller => 'repositories', :action => "create_member" do |f|
+    = f.hidden_field :user_id, :value => @user.id
+    = f.submit "Add", :disable_with => 'Adding...'
+- else
+  = @result

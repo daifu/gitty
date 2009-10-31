@@ -1,0 +1,15 @@
+.head
+  %h1 edit account
+
+- form_for @user, :url => account_path do |f|
+  = f.error_messages
+  .tlayout
+    %table
+      %tbody
+        = render :partial => "form", :object => f
+        %tr
+          %td.title
+          %td.desc
+            = f.submit "Update", :class => "button2"
+            or
+            = link_to "Cancel", account_path

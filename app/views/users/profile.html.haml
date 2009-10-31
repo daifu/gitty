@@ -1,0 +1,6 @@
+%h1= "#{@user.login}'s Profile"
+
+%h1 Repositories
+%ul
+- @repos.each do |r|
+  %li= r.name
