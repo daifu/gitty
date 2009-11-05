@@ -1,5 +1,4 @@
 #container
-  = render :partial => "repo_nav" 
   #repo_details  
     #repo_info
       .head
@@ -25,7 +24,7 @@
               %td.desc= link_to @commit.id
             %tr
               %td.title Tree
-              %td.desc= link_to @tree.id
+              %td.desc= link_to @file.id
             %tr
               %td.title Parent
               %td.desc= link_to @commit.parents.first
@@ -43,11 +42,11 @@
               - if c.class.to_s == "Grit::Tree"
                 %td.tree
                   = image_tag "/images/folder.png", :class => "icon"
-                  = link_to c.name, content_path(params[:login], params[:repo], params[:branch], 'tree', create_glob(c.name))
+                  = link_to c.name, content_path(params[:login], params[:repo], 'tree', params[:branch], create_glob(c.name))
               - else
                 %td.blob
                   = image_tag "/images/file.png", :class => "icon"
-                  = link_to c.name, content_url(params[:login], params[:repo], params[:branch], 'blob', create_glob(c.id))
+                  = link_to c.name, content_url(params[:login], params[:repo], 'blob', params[:branch], create_glob(c.name))
               %td.date= @log.date.strftime("%B %d, %Y")
               %td.message
                 = @log.message 

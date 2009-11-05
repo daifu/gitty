@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20091031041520) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "key"
-    t.string   "filename"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20091031041520) do
   create_table "repositories_users", :force => true do |t|
     t.integer  "repository_id"
     t.integer  "user_id"
-    t.integer  "is_owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

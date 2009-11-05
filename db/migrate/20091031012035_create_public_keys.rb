@@ -4,7 +4,6 @@ class CreatePublicKeys < ActiveRecord::Migration
       t.integer :user_id
       t.string  :title
       t.text    :key
-      t.string  :filename
       
       t.timestamps
     end

@@ -1,16 +1,17 @@
-%h1 Edit Repository
-- form_for(@repository) do |f|
-  = f.error_messages
-  = f.hidden_field :user_id, :value => @current_user.id
-  %p
-    = f.label :name
-    = f.text_field :name
-  %p
-    = f.label :description
-    = f.text_field :description
-  %p
-    = f.label :homepage
-    = f.text_field :homepage
-  = f.submit 'Create'
-= link_to 'Show', @repository
-= link_to 'Back', repositories_path
+#repos
+	#repo_details.repo
+		%h1 Manage
+		%h1= "#{params[:repo]} Team"
+		%h2= "Owner: #{@repository.owner.login}"
+#edit_repo
+	.properties
+		.admin.editbox
+			%h1 Administration
+			.body
+				%label Rename Repository
+			.body
+				=link_to "Delete This Repository.."
+	.collabs
+		#members
+			%h2 Repository Collaborators
+			=render :partial => "member_list"

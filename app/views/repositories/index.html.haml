@@ -7,9 +7,8 @@
     %ul
       - @repositories.each do |r|
         %li.repo
-          %strong= link_to r.name, repo_path(@current_user.login, r.name, 'master')
+          %strong= link_to r.name, content_path(@current_user.login, r.name, 'tree', 'master')
   #content
     .head
       %h1 latest updates
     #updates
-

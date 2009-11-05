@@ -3,7 +3,7 @@ class CreateRepositories < ActiveRecord::Migration
     create_table :repositories do |t|
       t.integer :user_id
       t.string  :name
-      t.text  :description
+      t.text    :description
       t.string  :homepage
       t.boolean :is_public, :null => false, :default => false
       t.timestamps
