@@ -10,7 +10,11 @@ class User < ActiveRecord::Base
   def initialize_user_settings
     # TODO change in production
     # FileUtils.mkdir("#{Preference.first.repositories_directory}/#{params[:user][:login]}")
-    FileUtils.mkdir("#{RAILS_ROOT}/home/git/repositories/#{self.login}")
-    File.new("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{self.login}.pub", "w")
+    begin
+      FileUtils.mkdir("#{RAILS_ROOT}/home/git/repositories/#{self.login}")
+      File.new("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{self.login}.pub", "w")
+    rescue
+      return false
+    end
   end
 end

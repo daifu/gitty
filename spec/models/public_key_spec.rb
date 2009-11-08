@@ -8,7 +8,6 @@ describe PublicKey do
 
   it "should create a new instance given valid attributes" do
     @public_key.should be_valid
-    @public_key.save!
   end
   
   it "should be invalid using :invalid_public_key factory" do

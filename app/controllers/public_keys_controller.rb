@@ -15,7 +15,7 @@ class PublicKeysController < ApplicationController
         format.html { redirect_to account_url }
       else
         flash[:notice] = 'Cannot add Public Key'
-        format.html { redirect_to account_url } #TODO Change redirect to render
+        format.html { redirect_to account_url } #TODO change redirect to render if possible
       end
     end
   end

@@ -2,24 +2,22 @@ class TreeController < ApplicationController
   
   before_filter :require_user
   
-  def show
+  def tree
     @repository = Repository.find_by_name(params[:repo])
     
     if @repository && fetch_repo
-      @branches = @repo.heads
-      @commit = @repo.commit(params[:branch])
-      @path = !params[:path].blank? ? params[:path].join("/") : "/"
-      @file = @commit.tree / @path
+      fetch_data
+      @contents = @file.contents
+    end
+  end
+  
+  def blob
+    @repository = Repository.find_by_name(params[:repo])
     
-      case params[:type]
-      when 'blob'
-        @data = @file.data
-        @code = CodeRay.scan("\t" + @data, :ruby).div
-        render :template => "tree/blob"
-      when 'tree'
-        @contents = @file.contents
-        render :template => "tree/tree"
-      end
+    if @repository && fetch_repo
+      fetch_data
+      @data = @file.data
+      @code = CodeRay.scan("\t" + @data, :ruby).div
     end
   end
   
@@ -40,5 +38,12 @@ class TreeController < ApplicationController
       rescue
         return false
       end
+    end
+    
+    def fetch_data
+      @branches = @repo.heads
+      @commit = @repo.commit(params[:branch])
+      @path = !params[:path].blank? ? params[:path].join("/") : "/"
+      @file = @commit.tree / @path
     end
 end

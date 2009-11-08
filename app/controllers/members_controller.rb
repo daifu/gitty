@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  def create
-    
-  end
+  
+  before_filter :require_user
+  
 end

@@ -42,11 +42,11 @@
               - if c.class.to_s == "Grit::Tree"
                 %td.tree
                   = image_tag "/images/folder.png", :class => "icon"
-                  = link_to c.name, content_path(params[:login], params[:repo], 'tree', params[:branch], create_glob(c.name))
+                  = link_to c.name, tree_path(params[:login], params[:repo], params[:branch], create_glob(c.name))
               - else
                 %td.blob
                   = image_tag "/images/file.png", :class => "icon"
-                  = link_to c.name, content_url(params[:login], params[:repo], 'blob', params[:branch], create_glob(c.name))
+                  = link_to c.name, blob_path(params[:login], params[:repo], params[:branch], create_glob(c.name))
               %td.date= @log.date.strftime("%B %d, %Y")
               %td.message
                 = @log.message 

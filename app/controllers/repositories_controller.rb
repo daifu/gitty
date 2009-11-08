@@ -44,7 +44,7 @@ class RepositoriesController < ApplicationController
 
   def update
     @repository = @current_user.repositories.find(params[:id])
-      
+    
     respond_to do |format|
       if @repository
         if @repository.update_attributes(params[:repository])

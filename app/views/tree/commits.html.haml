@@ -7,4 +7,4 @@
         %ul
           %li= c.message
           %li= "Commit #{link_to c.id}"
-          %li= "Tree #{link_to c.tree.id, content_path(@current_user.login, params[:repo], c.id)}"
+          %li= "Tree #{link_to c.tree.id, tree_path(@current_user.login, params[:repo], c.id)}"

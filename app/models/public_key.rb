@@ -18,15 +18,27 @@ class PublicKey < ActiveRecord::Base
   end
   
   def insert_key_to_file
-    File.open("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{user.login}.pub", "a+") { |file| file.puts(self.key) }
+    begin
+      File.open("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{user.login}.pub", "a+") { |file| file.puts(self.key) }
+    rescue
+      return false
+    end
   end
   
   def remove_key_from_file
-    content = File.read("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{user.login}.pub").gsub(key + "\n", "")
-    File.open("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{user.login}.pub", "w") { |file| file.write(content) }
+    begin
+      content = File.read("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{user.login}.pub").gsub(key + "\n", "")
+      File.open("#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/keydir/#{user.login}.pub", "w") { |file| file.write(content) }
+    rescue
+      return false
+    end
   end
   
   def update_key_file
-    # File.open(path, 'wb') { |file| file.write(content) }
+    begin
+      # File.open(path, 'wb') { |file| file.write(content) } #TODO finish update logic for public keys
+    rescue
+      return false
+    end
   end
 end
