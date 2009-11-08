@@ -6,12 +6,39 @@ describe TreeController do
     authenticate(:id => 1)
   end
   
-  # TODO finish tree controller tests
-  # it "should render template tree/tree with valid params for a tree" do
-  #   get :show, :repo => "gitup", :branch => "master", :type => "tree"
-  #   response.should render_template("tree/tree")
+  describe "tree method" do  
+    # it "should render tree given valid params" do
+    #   get :tree,  :login => "daifu",
+    #               :repo => "gitnub",
+    #               :branch => "master"
+    #   response.should be_success
+    # end
+  
+    it "should redirect given invalid params" do
+      get :tree,  :login => "daifu",
+                  :repo => "gitnub123",
+                  :branch => "master"
+      response.should redirect_to(repositories_path)
+    end
+  end
+  
+  # describe "blob" do
+  #   it "should render blob given valid params" do
+  #     get :blob,  :login => "daifu",
+  #                 :repo => "gitnub", 
+  #                 :branch => "master",
+  #                 :path => ".gitignore"
+  #     response.should be_success
+  #   end
   # end
-  # 
+  
+  # it "should render tree given valid params for a blob" do
+  #   get :tree,  :login => "daifu",
+  #               :repo => "gitnub", 
+  #               :branch => "master"
+  #   response.should be_redirect
+  # end
+  
   # it "should render template tree/blob with valid params for a blob" do
   #   get :show
   #   response.should render_template("tree/blob")

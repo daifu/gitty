@@ -4,10 +4,12 @@ class TreeController < ApplicationController
   
   def tree
     @repository = Repository.find_by_name(params[:repo])
-    
+
     if @repository && fetch_repo
       fetch_data
       @contents = @file.contents
+    else
+      redirect_to repositories_path
     end
   end
   
@@ -18,6 +20,8 @@ class TreeController < ApplicationController
       fetch_data
       @data = @file.data
       @code = CodeRay.scan("\t" + @data, :ruby).div
+    else
+      redirect_to repositories_path
     end
   end
   
