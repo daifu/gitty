@@ -1,5 +1,5 @@
 Factory.define :valid_repo, :class => Repository do |r|
-  r.user {|u| u.association(:valid_user)}
+  r.user { |u| u.association(:valid_user) }
   r.name "gitup"
   r.description "this repo manages gitup code"
   r.homepage "www.gitup.org"

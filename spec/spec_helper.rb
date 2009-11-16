@@ -51,9 +51,16 @@ Spec::Runner.configure do |config|
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
   
-  def authenticate(options = {})
+  # ==============================================================
+  # hash has the credentials of the user trying to login
+  # this is to prevent authlogic associations from being confused
+  # ==============================================================
+  def login(options = {})
     activate_authlogic
-    UserSession.create Factory.build(:valid_user, options)
+    hash = { :login => "bob",
+             :email => "bob@test.com" }
+    hash.merge!(options)
+    @current_session = UserSession.create Factory.build(:valid_user, options)
+    @current_user = @current_session.user
   end
-  
 end

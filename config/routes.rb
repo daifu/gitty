@@ -7,8 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.root :controller => "user_sessions", :action => "new"
   
-  # shows user profile
-  map.profile '/:login', :controller => "users", :action => "profile"
+  map.login   '/login',   :controller => "user_sessions", :action => "new"
+  map.profile '/:login',  :controller => "users",         :action => "profile"
   
   # Repositories Routes
   map.connect '/repositories/revoke_member/:id/:repo_id', :controller => "repositories", :action => "revoke_member"

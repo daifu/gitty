@@ -10,13 +10,11 @@
     = stylesheet_link_tag 'coderay.css'
     = javascript_include_tag :defaults
     = javascript_include_tag 'jquery_autocomplete'
-  %body.three-col
-    #main
+  %body.bp
+    #header
       - if @current_user
         = render :partial => 'shared/header'
-      .clearfix
-      #container
-        = yield :layout
-      .push
-      .clearfix
-    = render :partial => 'shared/footer'
+    #container
+      = yield :layout
+    #footer
+      = render :partial => 'shared/footer'

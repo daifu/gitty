@@ -20,7 +20,7 @@ describe PublicKey do
     @public_key.should be_invalid
   end
   
-  it "should be invalid using :invalid_public_key factory" do
+  it "should be invalid given invalid attributes" do
     Factory.build(:invalid_public_key).should be_invalid
   end
 end

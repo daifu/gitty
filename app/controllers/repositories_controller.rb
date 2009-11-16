@@ -1,3 +1,23 @@
+# encoding: utf-8
+#--
+#   Copyright (C) 2009 William Estoque <william.estoque@gmail.com>
+#   Copyright (C) 2009 Daifu Ye <daifu.ye@gmail.com>
+#   Copyright (C) 2009 Daihua Ye <daihua.ye@gmail.com>
+#
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU Affero General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU Affero General Public License for more details.
+#
+#   You should have received a copy of the GNU Affero General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
 class RepositoriesController < ApplicationController
   
   before_filter :require_user
@@ -18,16 +38,16 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  def edit
-    @repository = @current_user.repositories.find_by_name(params[:repo])
-      
-    if @repository
-      show_collaborators(@repository)
-    else
-      flash[:notice] = 'You are not allowed to access this repo'
-      redirect_to(repositories_url)
-    end
-  end
+  # def edit
+  #   @repository = @current_user.repositories.find_by_name(params[:repo])
+  #   
+  #   if @repository
+  #     show_collaborators(@repository)
+  #   else
+  #     flash[:notice] = 'You are not allowed to access this repo'
+  #     redirect_to(repositories_url)
+  #   end
+  # end
 
   def create
     @repository = Repository.new(params[:repository])
@@ -42,23 +62,23 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  def update
-    @repository = @current_user.repositories.find(params[:id])
-    
-    respond_to do |format|
-      if @repository
-        if @repository.update_attributes(params[:repository])
-          flash[:notice] = 'Repository was successfully updated.'
-          format.html { redirect_to(repositories_url) }
-        else
-          format.html { render :action => "edit" }
-        end
-      else
-        flash[:notice] = 'You are not allowed to access this repo'
-        format.html { redirect_to(repositories_url) }
-      end
-    end
-  end
+  # def update
+  #   @repository = @current_user.repositories.find(params[:id])
+  #   
+  #   respond_to do |format|
+  #     if @repository
+  #       if @repository.update_attributes(params[:repository])
+  #         flash[:notice] = 'Repository was successfully updated.'
+  #         format.html { redirect_to(repositories_url) }
+  #       else
+  #         format.html { render :action => "edit" }
+  #       end
+  #     else
+  #       flash[:notice] = 'You are not allowed to access this repo'
+  #       format.html { redirect_to(repositories_url) }
+  #     end
+  #   end
+  # end
 
   def destroy
     @repository = @current_user.repositories.find(params[:id])

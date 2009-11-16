@@ -11,7 +11,12 @@ describe Repository do
     @repo.save!
   end
   
-  it "should be invalid using :invalid_repo factory" do
+  it "should be invalid using with invalid params factory" do
     Factory.build(:invalid_repo).should be_invalid
+  end
+  
+  it "should be invalid without name" do
+    @repo.name = nil
+    @repo.should be_invalid
   end
 end

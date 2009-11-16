@@ -19,7 +19,7 @@ describe UsersController do
   
   describe "show action" do
     it "should render show" do
-      authenticate
+      login
       get :show, :id => 1
       response.should be_success
     end
