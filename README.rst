@@ -2,7 +2,7 @@
  ``gitty`` -- github like managing system for ``gitosis``
 ==========================================================
   
-  Front End for Gitosis
+  Gitty and gitosis will give you a nice and slick private repository manager.
 
 Requirements
 ============
