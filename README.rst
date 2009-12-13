@@ -1,6 +1,8 @@
 ==========================================================
  ``gitty`` -- github like managing system for ``gitosis``
 ==========================================================
+  
+  Front End for Gitosis
 
 Requirements
 ============

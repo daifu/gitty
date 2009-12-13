@@ -569,58 +569,61 @@ html {
 
 /* line 30, ../../../app/stylesheets/screen.sass */
 body {
+  color: #333333;
   font-family: "Arial";
   font-size: medium; }
-  /* line 33, ../../../app/stylesheets/screen.sass */
+  /* line 34, ../../../app/stylesheets/screen.sass */
   body h1 {
     font-size: 110%;
-    font-weight: bold; }
-  /* line 36, ../../../app/stylesheets/screen.sass */
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #999; }
+  /* line 39, ../../../app/stylesheets/screen.sass */
   body a {
     color: #21759B;
     text-decoration: none; }
-  /* line 39, ../../../app/stylesheets/screen.sass */
+  /* line 42, ../../../app/stylesheets/screen.sass */
   body #container {
     width: 970px;
     margin: 0 auto;
     overflow: hidden;
     display: inline-block;
-    padding: 1em 0; }
+    margin-top: 15px; }
     /* line 5, ../../../vendor/gems/chriseppstein-compass-0.8.17/frameworks/compass/stylesheets/compass/utilities/general/_hacks.sass */
     body #container {
       display: block; }
-  /* line 42, ../../../app/stylesheets/screen.sass */
+  /* line 45, ../../../app/stylesheets/screen.sass */
   body #header_wrap {
     height: 80px;
     background: #F1F1F1; }
-    /* line 45, ../../../app/stylesheets/screen.sass */
+    /* line 48, ../../../app/stylesheets/screen.sass */
     body #header_wrap #header {
       width: 970px;
       text-align: right; }
-      /* line 48, ../../../app/stylesheets/screen.sass */
+      /* line 51, ../../../app/stylesheets/screen.sass */
       body #header_wrap #header ul {
         padding-top: 53px; }
-        /* line 50, ../../../app/stylesheets/screen.sass */
+        /* line 53, ../../../app/stylesheets/screen.sass */
         body #header_wrap #header ul li {
           display: inline;
           margin-right: 12px; }
-          /* line 53, ../../../app/stylesheets/screen.sass */
+          /* line 56, ../../../app/stylesheets/screen.sass */
           body #header_wrap #header ul li a {
             font-size: 90%;
             padding: 8px 5px;
             -moz-border-radius-topleft: 3px;
             -moz-border-radius-topright: 3px; }
-            /* line 58, ../../../app/stylesheets/screen.sass */
+            /* line 61, ../../../app/stylesheets/screen.sass */
             body #header_wrap #header ul li a:hover {
               color: #F1831E; }
-          /* line 60, ../../../app/stylesheets/screen.sass */
+          /* line 63, ../../../app/stylesheets/screen.sass */
           body #header_wrap #header ul li .active {
             color: #555555;
             background: #fff; }
-  /* line 63, ../../../app/stylesheets/screen.sass */
+  /* line 66, ../../../app/stylesheets/screen.sass */
   body #footer {
     background: #DEDEDE; }
-  /* line 65, ../../../app/stylesheets/screen.sass */
+  /* line 68, ../../../app/stylesheets/screen.sass */
   body #sidebar {
     display: inline;
     float: left;
@@ -629,7 +632,7 @@ body {
     /* line 101, ../../../vendor/gems/chriseppstein-compass-0.8.17/frameworks/blueprint/stylesheets/blueprint/modules/_grid.sass */
     * html body #sidebar {
       overflow-x: hidden; }
-  /* line 69, ../../../app/stylesheets/screen.sass */
+  /* line 72, ../../../app/stylesheets/screen.sass */
   body #content {
     display: inline;
     float: left;
@@ -638,23 +641,23 @@ body {
     /* line 101, ../../../vendor/gems/chriseppstein-compass-0.8.17/frameworks/blueprint/stylesheets/blueprint/modules/_grid.sass */
     * html body #content {
       overflow-x: hidden; }
-  /* line 75, ../../../app/stylesheets/screen.sass */
+  /* line 78, ../../../app/stylesheets/screen.sass */
   body #splash_outer {
     margin: 0 auto;
     padding: 100px 0px 100px;
     width: 580px; }
-    /* line 80, ../../../app/stylesheets/screen.sass */
+    /* line 83, ../../../app/stylesheets/screen.sass */
     body #splash_outer #splash_inner table {
       background: #fff;
       padding: 20px;
       border: 2px solid #CCC; }
-      /* line 84, ../../../app/stylesheets/screen.sass */
+      /* line 87, ../../../app/stylesheets/screen.sass */
       body #splash_outer #splash_inner table td {
         padding: 10px 10px 10px 10px; }
-        /* line 86, ../../../app/stylesheets/screen.sass */
+        /* line 89, ../../../app/stylesheets/screen.sass */
         body #splash_outer #splash_inner table td label {
           font-weight: bold; }
-        /* line 88, ../../../app/stylesheets/screen.sass */
+        /* line 91, ../../../app/stylesheets/screen.sass */
         body #splash_outer #splash_inner table td input[type="text"], body #splash_outer #splash_inner table td input[type="password"] {
           font-size: 120%;
           width: 200px; }
