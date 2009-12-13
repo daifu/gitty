@@ -12,7 +12,7 @@ Requires an install of gitosis. You can get it at http://github.com/res0nat0r/gi
 Installation
 ============
 
-Put it in your server where gitosis is hosted like deploying a normal app. :-)
+Put it in your server where gitosis is hosted, just like deploying a normal app. :-)
 
 Authors
 =======
