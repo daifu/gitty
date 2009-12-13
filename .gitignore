@@ -3,6 +3,7 @@ tmp/**/*
 doc/api
 doc/app
 config/database.yml
-public/stylesheets/compiled/*.css
+public/stylesheets/compiled/*.css 
 home/*
 .DS_Store
+.idea/*

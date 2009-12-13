@@ -1,8 +1,6 @@
-#header
-  = image_tag "/images/gitty.png"
-  = "welcome, #{@current_user.login}"
-  %ul
-    %li= link_to 'dashboard', repositories_path
-    %li= link_to 'account', account_path
-    %li= link_to "logout", user_session_path, :method => :delete
-
+#header_wrap
+  #header
+    %ul
+      %li= make_selected_link('Dashboard', repositories_path)
+      %li= make_selected_link('Account', account_path)
+      %li= make_selected_link("Logout", logout_path)

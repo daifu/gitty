@@ -28,14 +28,38 @@ form.bp
 html
   :height 100%
 body
-  :font-family "Helvetica Neue"
+  :font-family "Arial"
   :font-size medium
+  h1
+    :font-size 110%
+    :font-weight bold
+  a
+    :color #21759B
+    :text-decoration none
   #container
     +container
     :padding 1em 0
-  #header
+  #header_wrap
     :height 80px
-    :background #DEDEDE
+    :background #F1F1F1
+    #header
+      :width 970px
+      :text-align right
+      ul
+        :padding-top 53px
+        li
+          :display inline
+          :margin-right 12px
+          a
+            :font-size 90%
+            :padding 8px 5px
+            :-moz-border-radius-topleft 3px
+            :-moz-border-radius-topright 3px
+            &:hover
+              :color #F1831E
+          .active
+            :color #555555
+            :background #fff
   #footer
     :background #DEDEDE
   #sidebar
@@ -48,25 +72,20 @@ body
     !content_columns = ceil(2 * !blueprint_grid_columns / 3)
     // true means it's the last column in the row
     +column(!content_columns, true)
-    
-  // Form fields
-  //========================================
-  .form
-    table
-      :border 10px solid #999
-      :margin-top 1em
-      :padding 1em
-    td
-      :padding .3em
-      input
-        :font-size 115%
-      input[type="text"], input[type="password"], input[type="select"]
-        :padding .1em
-        :width 300px
-  
-  // Error handling
-  //========================================
-  #errorExplanation
-    :border 1px solid #999
-    :padding .5em
+  #splash_outer
+    :margin 0 auto
+    :padding 100px 0px 100px
+    :width 580px
+    #splash_inner
+      table
+        :background #fff
+        :padding 20px
+        :border 2px solid #CCC
+        td
+          :padding 10px 10px 10px 10px
+          label
+            :font-weight bold
+          input[type="text"], input[type="password"]
+            :font-size 120%
+            :width 200px
     

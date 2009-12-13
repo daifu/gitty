@@ -1,4 +1,7 @@
-%h1= "my repositories #{link_to 'new repo', new_repository_path}"
-%ul
-  - @repositories.each do |r|
-    %li= link_to r.name, tree_path(@current_user.login, r.name, 'master')
+#sidebar
+  %h1= "My Repositories #{link_to 'new repo', new_repository_path}"
+  %ul
+    - @repositories.each do |r|
+      %li= link_to r.name, tree_path(@current_user.login, r.name, 'master')
+#content
+  %h1 Test

@@ -11,6 +11,6 @@
     = javascript_include_tag :defaults
     = javascript_include_tag 'jquery_autocomplete'
   %body
-    = render :partial => 'shared/header'
-    #container= yield :layout
-    / = render :partial => 'shared/footer'
+    #splash_outer
+      #splash_inner
+        = yield :layout

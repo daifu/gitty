@@ -2,12 +2,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :repositories
   map.resources :public_keys
   map.resources :users
-  map.resource :user_session
-  map.resource :account, :controller => "users"
+  map.resource  :user_session
+  map.resource  :account, :controller => "users"
   
   map.root :controller => "user_sessions", :action => "new"
   
   map.login   '/login',   :controller => "user_sessions", :action => "new"
+  map.logout  '/logout',  :controller => "user_sessions", :method => "delete"
+  
   map.profile '/:login',  :controller => "users",         :action => "profile"
   
   # Repositories Routes
