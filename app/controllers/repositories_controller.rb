@@ -12,6 +12,7 @@ class RepositoriesController < ApplicationController
   end
 
   def new
+    @title = "New Repository - Gitty"
     @repository = Repository.new
     
     respond_to do |format|
@@ -77,6 +78,7 @@ class RepositoriesController < ApplicationController
   def add_members
     @repository = Repository.find_by_name(params[:user][:repo])
     user = User.find_by_login(params[:user][:login])
+    
     if !user.blank?
       create_repositories_users(@repository, user, @repository.user)
       append_member_to_group(user, @repository)

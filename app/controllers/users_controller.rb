@@ -24,6 +24,12 @@ class UsersController < ApplicationController
     @keys = @current_user.public_keys
     @public_key = PublicKey.new
   end
+  
+  def profile
+    @title = "#{@current_user.login}'s Profile"
+    @user = User.find_by_login(params[:login])
+    @repos = @user.repositories
+  end
  
   def edit
     @title = "Edit - #{@current_user.login}"
@@ -40,11 +46,5 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
-  
-  def profile
-    @title = "#{@current_user.login}'s Profile"
-    @user = User.find_by_login(params[:login])
-    @repos = @user.repositories
-  end
-  
+
 end

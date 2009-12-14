@@ -1,8 +1,6 @@
 #profile
   .head
-    %h1 
-      account
-      = link_to "edit", edit_account_path
+    %h1= "Account #{link_to 'edit', edit_account_path}"
   .tlayout
     %table
       %tr 
@@ -13,9 +11,7 @@
         %td.desc=h @user.email
   #keys
     .head
-      %h1 
-        ssh keys
-        = link_to_function "add key", "addKey()"
+      %h1= "SSH Keys #{link_to_function 'add key', 'addKey()'}"
     #key_list
       .tlayout
         %table

@@ -1,6 +1,6 @@
 #header_wrap
   #header
     %ul
-      %li= make_selected_link('Dashboard', repositories_path)
-      %li= make_selected_link('Account', account_path)
-      %li= make_selected_link("Logout", logout_path)
+      %li= link_to "Dashboard", repositories_path
+      %li= link_to "Account", account_path
+      %li= link_to "Logout", logout_path

@@ -17,4 +17,5 @@ describe User do
   it "should be invalid using :invalid_user factory" do
     Factory.build(:invalid_user).should be_invalid
   end
+  
 end

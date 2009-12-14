@@ -1,6 +1,5 @@
 Given /^I have repositories titled (.+)$/ do |repositories|
-  repositories.split(', ').each do |repo|
-  end
+  pending
 end
 
 Then /^I should see Gitty$/ do

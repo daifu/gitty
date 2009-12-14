@@ -35,7 +35,8 @@ body
     :font-size 110%
     :font-weight bold
     :padding-bottom 5px
-    :border-bottom 1px solid #999
+    :border-bottom 1px solid #DFDFDF
+    :margin-bottom 10px
   a
     :color #21759B
     :text-decoration none
@@ -43,32 +44,39 @@ body
     +container
     :margin-top 15px
   #header_wrap
-    :height 80px
-    :background #F1F1F1
+    :height 30px
+    :background #0C75B6
+    :border-bottom 1px solid #BBBBBB
     #header
       :width 970px
+      :margin 0 auto
       :text-align right
       ul
-        :padding-top 53px
+        :padding-top 4px
         li
           :display inline
           :margin-right 12px
           a
-            :font-size 90%
+            :font-size 85%
             :padding 8px 5px
             :-moz-border-radius-topleft 3px
             :-moz-border-radius-topright 3px
+            :color #FFFFFF
             &:hover
-              :color #F1831E
-          .active
-            :color #555555
-            :background #fff
+              :background #095788
   #footer
     :background #DEDEDE
   #sidebar
     // One third of the grid columns, rounding down. With 24 cols, this is 8.
     !sidebar_columns = floor(!blueprint_grid_columns / 3)
     +column(!sidebar_columns)
+    #repo_main
+      :padding 0 5px 0 5px
+      #repo_links
+        ul
+          :list-style-type none
+          li
+            :margin-top 10px
   #content
     // Two thirds of the grid columns, rounding up.
     // With 24 cols, this is 16.
