@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user, :only => [:show, :edit, :update, :profile]
  
   def new
     @user = User.new
@@ -26,11 +26,13 @@ class UsersController < ApplicationController
   end
  
   def edit
+    @title = "Edit - #{@current_user.login}"
     @user = @current_user
   end
  
   def update
     @user = @current_user
+    
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to account_url
@@ -40,7 +42,9 @@ class UsersController < ApplicationController
   end
   
   def profile
+    @title = "#{@current_user.login}'s Profile"
     @user = User.find_by_login(params[:login])
     @repos = @user.repositories
   end
+  
 end

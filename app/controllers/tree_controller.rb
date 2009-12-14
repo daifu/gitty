@@ -52,4 +52,5 @@ class TreeController < ApplicationController
       @path = !params[:path].blank? ? params[:path].join("/") : "/"
       @file = @commit.tree / @path
     end
+    
 end
