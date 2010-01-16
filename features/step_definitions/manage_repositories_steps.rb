@@ -1,11 +1,7 @@
-Given /^I have repositories titled (.+)$/ do |repositories|
+Given /^I have a repository title (.+)$/ do |s|
   pending
 end
 
-Then /^I should see Gitty$/ do
-  pending
-end
-
-Then /^I should see Gitup$/ do
+Then /^I should see gitnub$/ do
   pending
 end

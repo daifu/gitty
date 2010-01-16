@@ -156,7 +156,7 @@ class RepositoriesController < ApplicationController
       begin
         line = "[group #{repository.name}]\nwritable = #{repository.owner.login}/#{repository.name}\nmembers ="
         gsub_file "#{RAILS_ROOT}/home/git/repositories/gitosis-admin.git/gitosis.conf", /(#{Regexp.escape(line)})/mi do |match|
-          "#{match} #{member.login}"
+          "#{match} #{member.login}"  
         end
         return true
       rescue
@@ -169,4 +169,11 @@ class RepositoriesController < ApplicationController
       File.open(path, 'wb') { |file| file.write(content) }
     end
     
+    def fetch_updates
+      @commits = []
+      @repositories.each do |r|
+        @commits << r.commits
+      end
+      @updates = @commits.sort
+    end
 end

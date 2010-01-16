@@ -1,14 +1,21 @@
-- form_for @user_session, :url => user_session_path do |f|
-  = f.error_messages
-  %table
-    %tbody
-      %tr
-        %td= f.label :login, "Login"
-        %td= f.text_field :login
-      %tr
-        %td= f.label :password, "Password"
-        %td= f.password_field :password
-      %tr
-        %td
-        %td{:style => "text-align: right"}= f.submit "Login"
-        
+#wrapper_login
+  .banner_wrap
+    .heading
+      %h1 Login to Gitty
+    .banner
+      .form_table
+        - form_for @user_session, :url => user_session_path do |f|
+          = f.error_messages
+          %table
+            %tbody
+              %tr
+                %td= f.label :login, "Login"
+              %tr
+                %td= f.text_field :login
+              %tr
+                %td= f.label :password, "Password"
+              %tr
+                %td= f.password_field :password
+              %tr
+                %td= f.submit "Login"
+  .bottom

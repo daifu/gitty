@@ -28,14 +28,16 @@ form.bp
 html
   :height 100%
 body
-  :color #333333
-  :font-family "Arial"
+  :background #E5E5E5
+  :color rgb(51, 51, 51)
+  :font-family "Lucida Grande", "Lucida Sans Unicode", helvetica, verdana, arial, times, "Times New Roman", sans-serif
   :font-size medium
+  :padding-bottom 100px
   h1
+    :color #000
     :font-size 110%
     :font-weight bold
     :padding-bottom 5px
-    :border-bottom 1px solid #DFDFDF
     :margin-bottom 10px
   a
     :color #21759B
@@ -43,6 +45,23 @@ body
   #container
     +container
     :margin-top 15px
+    #repo_info
+      table
+        tr
+          td
+            :padding 5px 0
+    #tree_source
+      :margin-top 30px
+      table
+        :width 100%
+        :font-size 90%
+        tr
+          th
+            :padding 5px 0
+            :background #E5ECF9
+            :border-bottom 1px solid #BBBBBB
+          td
+            :border-bottom 1px solid #BBBBBB
   #header_wrap
     :height 30px
     :background #0C75B6
@@ -57,7 +76,7 @@ body
           :display inline
           :margin-right 12px
           a
-            :font-size 85%
+            :font-size 75%
             :padding 8px 5px
             :-moz-border-radius-topleft 3px
             :-moz-border-radius-topright 3px
@@ -70,33 +89,78 @@ body
     // One third of the grid columns, rounding down. With 24 cols, this is 8.
     !sidebar_columns = floor(!blueprint_grid_columns / 3)
     +column(!sidebar_columns)
-    #repo_main
-      :padding 0 5px 0 5px
-      #repo_links
-        ul
-          :list-style-type none
-          li
-            :margin-top 10px
   #content
     // Two thirds of the grid columns, rounding up.
     // With 24 cols, this is 16.
     !content_columns = ceil(2 * !blueprint_grid_columns / 3)
     // true means it's the last column in the row
     +column(!content_columns, true)
-  #splash_outer
-    :margin 0 auto
-    :padding 100px 0px 100px
-    :width 580px
-    #splash_inner
-      table
-        :background #fff
-        :padding 20px
-        :border 2px solid #CCC
+    ul
+      :list-style-type none
+      li
+        :margin-top 5px
+    h2
+      :font-weight bold
+      :font-size 85%
+    p
+      :font-size 83%
+      :margin-top 5px
+    .commit_dash
+      :margin-left 5px
+  .form_table
+    label
+      :font-size 90%
+      :font-weight bold
+    input[type="submit"]
+      :font-size 120%
+    input[type="text"], input[type="password"]
+      :font-size 100%
+      :padding 3px
+      :width 200px
+    table
+      tr
         td
-          :padding 10px 10px 10px 10px
-          label
-            :font-weight bold
-          input[type="text"], input[type="password"]
-            :font-size 120%
-            :width 200px
+          :padding-top 5px
+  .display_table
+    table
+      :font-size 83%
+      tr
+        th
+          :font-weight bold
+          :color rgb(85, 85, 85)
+        td
+          :padding 0px 0px 0px 15px
+        .label
+          :padding-top 10px
+        .field
+          :padding 10px 0px 0px 15px
+  #wrapper_login
+    :padding 40px 23px 0px 30px
+    :margin 0 auto
+    :width 538px
+  .banner_wrap
+    :padding-right 8px
+    :background rgb(237, 243, 254) url('/images/bg-right-shadow.gif') repeat-y top right
+  .heading
+    :background rgb(255, 255, 204)
+    :border-bottom 1px solid rgb(228, 228, 184)
+    :padding 13px 30px 13px 24px
+    h1
+      :font-size 95%
+      :margin 0
+      :padding 0
+  .banner
+    :background rgb(237, 243, 254)
+    :padding 14px 50px 10px 23px
+  .bottom
+    :background url('/images/bg-bottom-shadow.gif') repeat-x top right
+    :padding 12px 0px 10px 20px
+  .icon_link
+    :float right
+    a
+      :font-size 80%
+  .blue
+    :background rgb(237, 243, 254)
+  .white
+    :background #fff
     

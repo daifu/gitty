@@ -51,6 +51,5 @@ class TreeController < ApplicationController
       @commit = @repo.commit(params[:branch])
       @path = !params[:path].blank? ? params[:path].join("/") : "/"
       @file = @commit.tree / @path
-    end
-    
+    end 
 end

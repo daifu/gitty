@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   has_many                :public_keys,   :dependent => :destroy
   has_many                :repositories,  :dependent => :destroy
+  # TODO review logic and do necessary tasks
   # has_and_belongs_to_many :repositories
   
   after_create            :initialize_user_settings

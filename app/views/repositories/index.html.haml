@@ -1,9 +1,14 @@
-#sidebar
-  #repo_main
-    %h1= "My Repositories #{link_to 'new repo', new_repository_path}"
-    #repo_links
+#content
+  .banner_wrap
+    .heading.blue
+      %h1{:style => "display: inline"} My Repositories 
+      %span.icon_link= link_to "#{image_tag('/images/plus2.png', :width => 15, :height => 15)} New Repo", new_repository_path
+    .banner.white
       %ul
         - @repositories.each do |r|
-          %li= link_to r.name, tree_path(@current_user.login, r.name, 'master')
-#content
-  %h1 Updates Feed
+          %li
+            %h2= link_to r.name, tree_path(@current_user.login, r.name, 'master')
+            %p.commit_dash= "Latest Commit"
+  .bottom
+#sidebar
+  %h1 Sidebar

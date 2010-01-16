@@ -1,53 +1,38 @@
 #container
-  #repo_details  
-    #repo_info
-      .head
-        %h1= @repository.name
-      %h2= "Current Branch: #{link_to params[:branch]}"
-      #repo_desc
-        %table
-          %tbody
-            %tr
-              %td.title Description
-              %td.desc= @repository.description
-            %tr
-              %td.title Homepage
-              %td.desc= link_to @repository.homepage
-            %tr
-              %td.title Your Clone URL
-              %td.desc= "git@75.101.159.140:#{@current_user.login}/#{@repository.name}.git"
-      #repo_id
-        %table
-          %tbody
-            %tr
-              %td.title Commit
-              %td.desc= link_to @commit.id
-            %tr
-              %td.title Tree
-              %td.desc= link_to @file.id
-            %tr
-              %td.title Parent
-              %td.desc= link_to @commit.parents.first
-    .clearfix
-    #tree
-      %table
-        %tbody
+  #repo_info
+    %h1= @repository.name
+    %h2 
+      Current Branch: 
+      = link_to params[:branch], tree_path(@current_user.login, @repository.name, params[:branch])
+    %table
+      %tbody
+        %tr
+          %td.title Commit
+          %td.desc= link_to @commit.id
+        %tr
+          %td.title Tree
+          %td.desc= link_to @file.id
+        %tr
+          %td.title Parent
+          %td.desc= link_to @commit.parents.first
+  #tree_source
+    %table
+      %tbody
+        %tr
+          %th
+          %th Tree/Blob
+          %th Date
+          %th Message
+          %th Author
+        - @contents.each do |c|
           %tr
-            %th Tree/Blob
-            %th Date
-            %th Message
-          - @contents.each do |c|
-            %tr{:class => "#{cycle('odd', 'even')}"}
-              - traverse_tree(c.name)
-              - if c.class.to_s == "Grit::Tree"
-                %td.tree
-                  = image_tag "/images/folder.png", :class => "icon"
-                  = link_to c.name, tree_path(params[:login], params[:repo], params[:branch], create_glob(c.name))
-              - else
-                %td.blob
-                  = image_tag "/images/file.png", :class => "icon"
-                  = link_to c.name, blob_path(params[:login], params[:repo], params[:branch], create_glob(c.name))
-              %td.date= @log.date.strftime("%B %d, %Y")
-              %td.message
-                = @log.message 
-                = "[#{@log.author.name}]"
+            - traverse_tree(c.name)
+            - if c.class.to_s == "Grit::Tree"
+              %td.icon= image_tag "/images/folder.png", :class => "icon"
+              %td.filename= link_to c.name, tree_path(params[:login], params[:repo], params[:branch], create_glob(c.name))
+            - else
+              %td.icon= image_tag "/images/file.png", :class => "icon"
+              %td.filename= link_to c.name, blob_path(params[:login], params[:repo], params[:branch], create_glob(c.name))
+            %td.date= @log.date.strftime("%B %d, %Y")
+            %td.message= @log.message
+            %td.author= @log.author.name

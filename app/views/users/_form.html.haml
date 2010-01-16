@@ -1,12 +1,21 @@
 %tr
-  %td.title= form.label :login, "login"
-  %td.desc= form.text_field :login
+  %td= form.label :login, "login"
 %tr
-  %td.title= form.label :email, "email"
-  %td.desc= form.text_field :email
+  %td= form.text_field :login
 %tr
-  %td.title= form.label :password, form.object.new_record? ? "password" : "change password"
-  %td.desc= form.password_field :password
+  %td= form.label :email, "email"
 %tr
-  %td.title= form.label :password_confirmation, "confirm"
-  %td.desc= form.password_field :password_confirmation
+  %td= form.text_field :email
+%tr
+  %td= form.label :password, form.object.new_record? ? "password" : "change password"
+%tr
+  %td= form.password_field :password
+%tr
+  %td= form.label :password_confirmation, "confirm"
+%tr
+  %td= form.password_field :password_confirmation
+%tr
+  %td
+    = form.submit "Update", :class => "button2"
+    or
+    = link_to "Cancel", account_path

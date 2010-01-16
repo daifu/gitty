@@ -6,7 +6,6 @@ class Repository < ActiveRecord::Base
   validates_uniqueness_of :name,    :message => "must be unique"
   
   belongs_to              :user
-  # has_and_belongs_to_many :members, :class_name => "User"
   
   before_create           :strip_whitespace
   after_save              :append_group
@@ -24,5 +23,4 @@ class Repository < ActiveRecord::Base
     self.name.strip! if self.name.match(/ /)
     self.name.gsub!(/ /, "-")
   end
-  
 end

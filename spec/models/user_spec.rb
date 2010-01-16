@@ -6,16 +6,17 @@ describe User do
     @user = Factory.build(:valid_user)
   end
   
-  it "should be valid" do
+  it "should be valid given valid params" do
     @user.should be_valid
   end
   
-  it "should succeed creating a new :valid_user from the Factory" do
-    Factory.create(:valid_user)
-  end
-
-  it "should be invalid using :invalid_user factory" do
-    Factory.build(:invalid_user).should be_invalid
+  it "should be invalid if login is nil" do
+    @user.login = nil
+    @user.should be_invalid
   end
   
+  it "should be invalid if email is nil" do
+    @user.email = nil
+    @user.should be_invalid
+  end
 end
