@@ -652,7 +652,15 @@ body {
     /* line 101, ../../../vendor/gems/chriseppstein-compass-0.8.17/frameworks/blueprint/stylesheets/blueprint/modules/_grid.sass */
     * html body #sidebar {
       overflow-x: hidden; }
-  /* line 92, ../../../app/stylesheets/screen.sass */
+    /* line 92, ../../../app/stylesheets/screen.sass */
+    body #sidebar p {
+      font-size: 83%;
+      margin-top: 5px; }
+    /* line 95, ../../../app/stylesheets/screen.sass */
+    body #sidebar .teaser {
+      padding: 10px 15px 10px 15px;
+      background: rgb(255, 255, 204); }
+  /* line 99, ../../../app/stylesheets/screen.sass */
   body #content {
     display: inline;
     float: left;
@@ -661,90 +669,90 @@ body {
     /* line 101, ../../../vendor/gems/chriseppstein-compass-0.8.17/frameworks/blueprint/stylesheets/blueprint/modules/_grid.sass */
     * html body #content {
       overflow-x: hidden; }
-    /* line 98, ../../../app/stylesheets/screen.sass */
+    /* line 105, ../../../app/stylesheets/screen.sass */
     body #content ul {
       list-style-type: none; }
-      /* line 100, ../../../app/stylesheets/screen.sass */
+      /* line 107, ../../../app/stylesheets/screen.sass */
       body #content ul li {
         margin-top: 5px; }
-    /* line 102, ../../../app/stylesheets/screen.sass */
+    /* line 109, ../../../app/stylesheets/screen.sass */
     body #content h2 {
       font-weight: bold;
       font-size: 85%; }
-    /* line 105, ../../../app/stylesheets/screen.sass */
+    /* line 112, ../../../app/stylesheets/screen.sass */
     body #content p {
       font-size: 83%;
       margin-top: 5px; }
-    /* line 108, ../../../app/stylesheets/screen.sass */
+    /* line 115, ../../../app/stylesheets/screen.sass */
     body #content .commit_dash {
       margin-left: 5px; }
-  /* line 111, ../../../app/stylesheets/screen.sass */
+  /* line 118, ../../../app/stylesheets/screen.sass */
   body .form_table label {
     font-size: 90%;
     font-weight: bold; }
-  /* line 114, ../../../app/stylesheets/screen.sass */
+  /* line 121, ../../../app/stylesheets/screen.sass */
   body .form_table input[type="submit"] {
     font-size: 120%; }
-  /* line 116, ../../../app/stylesheets/screen.sass */
+  /* line 123, ../../../app/stylesheets/screen.sass */
   body .form_table input[type="text"], body .form_table input[type="password"] {
     font-size: 100%;
     padding: 3px;
     width: 200px; }
-  /* line 122, ../../../app/stylesheets/screen.sass */
+  /* line 129, ../../../app/stylesheets/screen.sass */
   body .form_table table tr td {
     padding-top: 5px; }
-  /* line 125, ../../../app/stylesheets/screen.sass */
+  /* line 132, ../../../app/stylesheets/screen.sass */
   body .display_table table {
     font-size: 83%; }
-    /* line 128, ../../../app/stylesheets/screen.sass */
+    /* line 135, ../../../app/stylesheets/screen.sass */
     body .display_table table tr th {
       font-weight: bold;
       color: rgb(85, 85, 85); }
-    /* line 131, ../../../app/stylesheets/screen.sass */
+    /* line 138, ../../../app/stylesheets/screen.sass */
     body .display_table table tr td {
       padding: 0px 0px 0px 15px; }
-    /* line 133, ../../../app/stylesheets/screen.sass */
+    /* line 140, ../../../app/stylesheets/screen.sass */
     body .display_table table tr .label {
       padding-top: 10px; }
-    /* line 135, ../../../app/stylesheets/screen.sass */
+    /* line 142, ../../../app/stylesheets/screen.sass */
     body .display_table table tr .field {
       padding: 10px 0px 0px 15px; }
-  /* line 137, ../../../app/stylesheets/screen.sass */
+  /* line 144, ../../../app/stylesheets/screen.sass */
   body #wrapper_login {
     padding: 40px 23px 0px 30px;
     margin: 0 auto;
     width: 538px; }
-  /* line 141, ../../../app/stylesheets/screen.sass */
+  /* line 148, ../../../app/stylesheets/screen.sass */
   body .banner_wrap {
     padding-right: 8px;
     background: rgb(237, 243, 254) url('/images/bg-right-shadow.gif') repeat-y top right; }
-  /* line 144, ../../../app/stylesheets/screen.sass */
+  /* line 151, ../../../app/stylesheets/screen.sass */
   body .heading {
     background: rgb(255, 255, 204);
     border-bottom: 1px solid rgb(228, 228, 184);
     padding: 13px 30px 13px 24px; }
-    /* line 148, ../../../app/stylesheets/screen.sass */
+    /* line 155, ../../../app/stylesheets/screen.sass */
     body .heading h1 {
       font-size: 95%;
       margin: 0;
       padding: 0; }
-  /* line 152, ../../../app/stylesheets/screen.sass */
+  /* line 159, ../../../app/stylesheets/screen.sass */
   body .banner {
     background: rgb(237, 243, 254);
     padding: 14px 50px 10px 23px; }
-  /* line 155, ../../../app/stylesheets/screen.sass */
+  /* line 162, ../../../app/stylesheets/screen.sass */
   body .bottom {
     background: url('/images/bg-bottom-shadow.gif') repeat-x top right;
     padding: 12px 0px 10px 20px; }
-  /* line 158, ../../../app/stylesheets/screen.sass */
+  /* line 165, ../../../app/stylesheets/screen.sass */
   body .icon_link {
     float: right; }
-    /* line 160, ../../../app/stylesheets/screen.sass */
+    /* line 167, ../../../app/stylesheets/screen.sass */
     body .icon_link a {
       font-size: 80%; }
-  /* line 162, ../../../app/stylesheets/screen.sass */
+  /* line 169, ../../../app/stylesheets/screen.sass */
   body .blue {
     background: rgb(237, 243, 254); }
-  /* line 164, ../../../app/stylesheets/screen.sass */
+  /* line 171, ../../../app/stylesheets/screen.sass */
   body .white {
     background: #fff; }

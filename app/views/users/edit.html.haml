@@ -8,4 +8,9 @@
         %table
           %tbody
             = render :partial => "form", :object => f
+            %tr
+              %td
+                = f.submit "Update", :class => "button2"
+                or
+                = link_to "Cancel", account_path
 .bottom

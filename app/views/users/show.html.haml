@@ -1,55 +1,61 @@
-.banner_wrap
-  .heading.blue
-    %h1= "Account #{link_to 'edit', edit_account_path}"
-  .banner.white
-    .display_table
+#content
+  .banner_wrap
+    .heading.blue
+      %h1= "Account #{link_to 'edit', edit_account_path}"
+    .banner.white
+      .display_table
+        %table
+          %tbody
+            %tr 
+              %th Login
+              %td=h @user.login
+            %tr
+              %th.label Email
+              %td.field=h @user.email
+            %tr
+              %th.label Repositories
+              %td.field=h @user.repositories.count
+  .bottom
+
+  .banner_wrap
+    .heading.blue
+      %h1= "SSH Keys #{link_to_function 'add key', 'addKey()'}"
+    .banner.white
       %table
         %tbody
-          %tr 
-            %th Login
-            %td=h @user.login
-          %tr
-            %th.label Email
-            %td.field=h @user.email
-          %tr
-            %th.label Repositories
-            %td.field=h @user.repositories.count
-.bottom
+          - @keys.each do |k|
+            %tr
+              %td.title
+                =h k.title
+                = "#{link_to 'Edit', edit_public_key_path(k)} | "
+                = link_to "Delete", public_key_path(k), :method => :delete
+      #add_key
+        #new_key
+          .form_table
+            - form_for @public_key do |f|
+              = f.error_messages
+              = f.hidden_field :user_id, :value => @user.id
+              %table
+                %tbody
+                  %tr
+                    %td= f.label :title, "title"
+                  %tr
+                    %td= f.text_field :title
+                  %tr
+                    %td= f.label :key, "key"
+                  %tr
+                    %td= f.text_area :key
+                  %tr
+                    %td
+                      = f.submit "Submit", :disable_with => 'Submiting...', :class => "button2"
+                      or
+                      = link_to_function "Cancel", "cancelAdd()"
+  .bottom
 
-.banner_wrap
-  .heading.blue
-    %h1= "SSH Keys #{link_to_function 'add key', 'addKey()'}"
-  .banner.white
-    %table
-      %tbody
-        - @keys.each do |k|
-          %tr
-            %td.title
-              =h k.title
-              = "#{link_to 'Edit', edit_public_key_path(k)} | "
-              = link_to "Delete", public_key_path(k), :method => :delete
-    #add_key
-      #new_key
-        .form_table
-          - form_for @public_key do |f|
-            = f.error_messages
-            = f.hidden_field :user_id, :value => @user.id
-            %table
-              %tbody
-                %tr
-                  %td= f.label :title, "title"
-                %tr
-                  %td= f.text_field :title
-                %tr
-                  %td= f.label :key, "key"
-                %tr
-                  %td= f.text_area :key
-                %tr
-                  %td
-                    = f.submit "Submit", :disable_with => 'Submiting...', :class => "button2"
-                    or
-                    = link_to_function "Cancel", "cancelAdd()"
-.bottom
+#sidebar
+  .teaser
+    %p
+      This is your profile.
 
 :javascript
   $('#new_key').hide();
